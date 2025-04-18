@@ -11,13 +11,13 @@ const router = createRouter({
     },
     {
       path: '/task',
-      name: 'cretae-task',
-      component: () => import('../views/CreateEventView.vue'),
+      name: 'create',
+      component: () => import('../components/CreateTaskView.vue'),
     },
     {
       path: '/task/:id',
       name: 'edit-task',
-      component: () => import('../views/EditTaskView.vue'),
+      component: () => import('../components/EditTaskView.vue'),
     },
     {
       path: '/about',

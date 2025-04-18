@@ -1,20 +1,21 @@
 <script setup lang="ts">
- import { ref, onMounted } from 'vue'
- import { RouterLink } from 'vue-router'
- 
- interface Task {
-    id: number
-    title: string
-    description: string
-    completed: boolean
-    deadline: string
-</script>
+import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router';
 
+interface Task {
+  id: number;
+  title: string;
+  description: string;
+  deadline: string;
+  completed: boolean;
+}
+const tasks = ref<Task[]>([]);
+</script> 
  <template>
    <main>
      <div>Daftar Task</div>
      <div>
-       <RouterLink to="/event">Buat Task</RouterLink>
+       <RouterLink to="/task">Buat Task</RouterLink>
      </div>
      <div>
        <ul>
