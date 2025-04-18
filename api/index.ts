@@ -7,24 +7,19 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname.startsWith("/api/tasks")) {
-			return Response.json([
-				{
-					id: '1',
-					title: "Task 1",
-					complated: false,
-					deadline: 1741247092,
-				},
-				{
-					id: '2',
-					title: "Task 2",
-					complated: true,
-					deadline: 1741247092,
-				},
-			]);
-			
+				let{ results } = await env.DB.prepare("SELECT * FROM tasks").all();
+				return Response.json(results);
+				if (request.method === 'GET') {
+				let { results } = await env.DB.prepare("SELECT * FROM tasks").all();
+				return Response.json(results);	
+				} else if (request.method === 'POST') {
+						const newId = crypto.randomUUID();
+						const input = await request.json<any>()	
+						const query = `INSERT INTO tasks (id,title,description,deadline,completed) values ("${newId}","${input.title}","${input.description}","${input.deadline}","${input.completed}")`
+						const NewTask = await env.DB.exec(query);
+						return Response.json({ NewTask});
+					}
+			}		
+	}
 
-		}
-		return env.ASSETS.fetch(request);
-	},
-}	
-		
+}
