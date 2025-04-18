@@ -28,6 +28,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+.wrangler
 
 # wrangler files
 .wrangler
